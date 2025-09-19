@@ -62,8 +62,7 @@ import_data <- function(file_path, output_dir) {
   }
   # 5. Replace spaces in column names with underscore
   
-  colnames(data) <- colnames(data) %>% 
-    str_replace_all(" ","_")
+  colnames(data) <- colnames(data) <- stringr::str_replace_all(colnames(data), " ", "_")
   
   # 6. Assign data to global environment
   assign("masterdata", data, envir = .GlobalEnv)
