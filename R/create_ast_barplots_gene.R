@@ -28,6 +28,8 @@ create_ast_barplots_gene <- function(masterdata, output_dir) {
     "ghru_id", "Bla_Carb_acquired", "AMK", "AMP", "FEP", "CRO", "CIP",
     "COL", "GEN", "IPM", "MEM", "TZP", "SXT"
   )]
+  
+  table(AST_data$Bla_Carb_acquired, useNA = "ifany")
 
   # 2. Create resistance indicator
   AST_data$carba_resistance<-ifelse(AST_data$Bla_Carb_acquired == "-"|is.na(AST_data$Bla_Carb_acquired),
