@@ -4,7 +4,7 @@ Title: Genomics Epidemiology for the KLEBSurvey
 Version: 0.1.0
 Date: 2025-09-19
 Author: Natacha Couto
-Maintainer: CGPS team <Natacha Couto>
+Maintainer: CGPS team <natacha.couto@cgps.group>
 Description: The GenepiK package analyses and plots data originated from the KLEBSurveys.
 Depends: R (>= 3.6.0)
 Imports:
