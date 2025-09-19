@@ -4,10 +4,11 @@ Title: Genomics Epidemiology for the KLEBSurvey
 Version: 0.1.0
 Date: 2025-09-19
 Authors@R: c(
-    person(family = "Couto", given = "Natacha", comment = c(ORCID = "0000-0002-9152-5464"), role = "aut"),
+    person(family = "Couto", given = "Natacha", comment = c(ORCID = "0000-0002-9152-5464"), role = ("aut", "cre"), email = "your@email.com"),
     person(family = "Kumaran", given = "Emmanuelle", role = "aut"),
     person(family = "Lewis-Woodhouse", given = "Georgina", role = "aut")
   )
+Maintainer: CGPS team <Natacha Couto>
 Description: The GenepiK package analyses and plots data originated from the KLEBSurveys.
 Depends: R (>= 3.6.0)
 Imports:
