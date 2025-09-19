@@ -23,17 +23,31 @@
 #' # Assuming 'masterdata' is a data frame loaded in the environment
 #' # create_ast_barplots_gene(masterdata = my_data, output_dir = "plots")
 create_ast_barplots_gene <- function(masterdata, output_dir) {
-  # 1. Subset relevant AST columns
-  AST_data <- masterdata[c(
-    "ghru_id", "Bla_Carb_acquired", "AMK", "AMP", "FEP", "CRO", "CIP",
-    "COL", "GEN", "IPM", "MEM", "TZP", "SXT"
-  )]
   
-  table(AST_data$Bla_Carb_acquired, useNA = "ifany")
-
-  # 2. Create resistance indicator
-  AST_data$carba_resistance<-ifelse(AST_data$Bla_Carb_acquired == "-"|is.na(AST_data$Bla_Carb_acquired),
-                                    "CARBA-S","CARBA-R")
+    # 1. Ensure masterdata is a data frame
+  AST_data <- as.data.frame(masterdata, stringsAsFactors = FALSE)
+  
+  # 2. Check required column exists
+  if(!"Bla_Carb_acquired" %in% colnames(AST_data)) {
+    stop("Column 'Bla_Carb_acquired' not found in masterdata")
+  }
+  
+  # 3. Subset relevant AST columns safely
+  required_cols <- c("ghru_id", "Bla_Carb_acquired", 
+                     "AMK","AMP","FEP","CRO","CIP",
+                     "COL","GEN","IPM","MEM","TZP","SXT")
+  missing_cols <- setdiff(required_cols, colnames(AST_data))
+  if(length(missing_cols) > 0){
+    stop("Missing required columns: ", paste(missing_cols, collapse = ", "))
+  }
+  AST_data <- AST_data[, required_cols, drop = FALSE]
+  
+  # 4. Create carbapenem resistance safely
+  AST_data$carba_resistance <- dplyr::case_when(
+    is.na(AST_data$Bla_Carb_acquired) ~ "CARBA-S",
+    AST_data$Bla_Carb_acquired == "-" ~ "CARBA-S",
+    TRUE ~ "CARBA-R"
+  )
 
   # 3. Pivot from wide to long format
   AST_data_long <- AST_data %>%
