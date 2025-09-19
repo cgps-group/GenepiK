@@ -1,5 +1,5 @@
-# Genomics_epidemiology
-An R package to perform genomics epidemiology. 
+# GenepiK
+An R package to perform genomics epidemiology of Klebsiella pneumoniae. 
 
 It includes functions to perform the following:
 
