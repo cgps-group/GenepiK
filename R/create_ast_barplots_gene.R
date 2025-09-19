@@ -7,7 +7,6 @@
 #'
 #' @param masterdata A data frame containing the AST data. It must include
 #'   the columns 'ghru_id', 'Bla_Carb_acquired', and other specified antimicrobial columns.
-#' @param output_dir A character string specifying the directory where the plot will be saved.
 #' @importFrom dplyr %>% count pull filter
 #' @importFrom tidyr pivot_longer
 #' @importFrom ggplot2 ggplot aes geom_bar scale_y_continuous scale_fill_manual labs facet_wrap theme element_text
@@ -22,7 +21,12 @@
 #' @examples
 #' # Assuming 'masterdata' is a data frame loaded in the environment
 #' # create_ast_barplots_gene(masterdata = my_data, output_dir = "plots")
-create_ast_barplots_gene <- function(masterdata, output_dir) {
+create_ast_barplots_gene <- function(masterdata) {
+  # Use global variable for output directory
+  if (!exists("output_dir")) {
+    stop("Global variable 'output_dir' not found. Please use import_data to define it first.")
+  }
+  output_dir <- output_dir
   # 1. Subset relevant AST columns
   AST_data <- masterdata[c(
     "ghru_id", "Bla_Carb_acquired", "AMK", "AMP", "FEP", "CRO", "CIP",
