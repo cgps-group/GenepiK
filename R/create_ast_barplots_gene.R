@@ -30,7 +30,8 @@ create_ast_barplots_gene <- function(masterdata, output_dir) {
   )]
 
   # 2. Create resistance indicator
-  AST_data$carba_resistance<-ifelse(AST_data$Bla_Carb_acquired == "-","CARBA-S","CARBA-R")
+  AST_data$carba_resistance<-ifelse(AST_data$Bla_Carb_acquired == "-"|is.na(AST_data$carba_resistance),
+                                    "CARBA-S","CARBA-R")
 
   # 3. Pivot from wide to long format
   AST_data_long <- AST_data %>%
