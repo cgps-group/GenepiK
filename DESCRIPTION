@@ -19,6 +19,12 @@ Imports:
   magick(>= 2.9.0),
   readr(>= 2.1.5),
   magrittr
+Depends:
+  dplyr,
+  ggplot2,
+  ComplexUpset,
+  readr,
+  tidyr
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true

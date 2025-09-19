@@ -8,6 +8,7 @@
 #' @param masterdata A data frame containing the AST data. It must include
 #'   the columns 'ghru_id', 'Bla_Carb_acquired', and other specified antimicrobial columns.
 #' @param output_dir A character string specifying the directory where the plot will be saved.
+#' #' @importFrom magrittr %>%       # only if you use %>% in your function
 #' @importFrom dplyr %>% count pull filter
 #' @importFrom tidyr pivot_longer
 #' @importFrom ggplot2 ggplot aes geom_bar scale_y_continuous scale_fill_manual labs facet_wrap theme element_text
@@ -50,12 +51,12 @@ create_ast_barplots_gene <- function(masterdata, output_dir) {
   )
 
   # 3. Pivot from wide to long format
-  AST_data_long <- AST_data %>%
-    pivot_longer(
-      cols = AMK:SXT,
-      names_to = "Antimicrobial",
-      values_to = "Interpretation"
-    )
+ AST_data_long <- tidyr::pivot_longer(
+  AST_data,
+  cols = AMK:SXT,
+  names_to = "Antimicrobial",
+  values_to = "Interpretation"
+)
 
   # 4. Set factor levels for interpretation
   AST_data_long$Interpretation <- factor(
