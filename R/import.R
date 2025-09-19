@@ -20,12 +20,18 @@
 #' # check_columns_and_read(file_path = "data.csv", output_dir = "my_output_folder")
 #'
 import_data <- function(file_path, output_dir) {
-  # 1. Set the output directory
-  if (!is.null(output_dir)) {
-    message("📁 Output directory set to: ", output_dir)
+  # 1. Ensure the output directory exists
+  if (!dir.exists(output_dir)) {
+    dir.create(output_dir, recursive = TRUE)
+    message("📂 Output directory created: ", output_dir)
+  } else {
+    message("📁 Using existing output directory: ", output_dir)
   }
   
-  # 2. Define expected column names (hardcoded)
+  # 2. Save output directory globally
+  assign("master_output_dir", output_dir, envir = .GlobalEnv)
+  
+  # 3. Define expected column names (hardcoded)
   expected_columns <- c(
     "ghru_id", "Sample collection date", "Specimen type", "Isolate type", "AMK", "AMP", "FEP", "CRO", "CIP", "COL", "GEN", 
     "IPM", "MEM", "TZP", "SXT", "species", "ST", "Yersiniabactin", "Colibactin", "Aerobactin", "Salmochelin", "RmpADC", 
@@ -35,7 +41,7 @@ import_data <- function(file_path, output_dir) {
     "Omp_mutations", "Col_mutations", "Flq_mutations", "resistance_score", "K_locus", "O_locus")
   
   # 3. Read the CSV data
-  data <- read_csv(file_path, col_names = TRUE)
+  data <- readr::read_csv(file_path, col_names = TRUE)
   actual_columns <- colnames(data)
   
   # 4. Compare expected vs actual columns
@@ -61,4 +67,8 @@ import_data <- function(file_path, output_dir) {
   
   # 6. Assign data to global environment
   assign("masterdata", data, envir = .GlobalEnv)
+
+  #7. Set output directory message
+  message("📁 Output directory set to: ", output_dir)
+
 }
