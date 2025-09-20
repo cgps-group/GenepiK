@@ -407,18 +407,11 @@ G2UKKS20004,11/09/24,Blood,CARBA-R,S,R,R</code></pre>
 <h2>Including Plots</h2>
 <p>Importing data</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># Define input and output directory</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>input_dir <span class="ot">&lt;-</span> <span class="st">&quot;~/git_repos/GenepiK/data-raw/&quot;</span></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>output_dir <span class="ot">&lt;-</span> <span class="st">&quot;~/git_repos/GenepiK/test_output/&quot;</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="co"># Import the data</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="fu">import_data</span>(<span class="st">&quot;~/git_repos/GenepiK/test_input/rapid_report_dummy_data.csv&quot;</span>, <span class="st">&quot;~/git_repos/GenepiK/test_output/&quot;</span>)</span>
 <span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co"># Path to the input file</span></span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>input_file <span class="ot">&lt;-</span> <span class="fu">file.path</span>(input_dir, <span class="st">&quot;rapid_report_dummy_data.csv&quot;</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co"># Import the data</span></span>
-<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="fu">import_data</span>(input_file, output_dir)</span>
-<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="co"># Preview the data</span></span>
-<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="fu">head</span>(masterdata)</span></code></pre></div>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co"># Preview the data</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="fu">head</span>(masterdata)</span></code></pre></div>
 </div>
 </div>
 

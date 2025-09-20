@@ -68,15 +68,8 @@ Importing data
 
 ```{r eval=FALSE, echo=TRUE, message=FALSE}
 # Define input and output directory
-input_dir <- "~/git_repos/GenepiK/data-raw/"
-output_dir <- "~/git_repos/GenepiK/test_output/"
-
-
-# Path to the input file
-input_file <- file.path(input_dir, "rapid_report_dummy_data.csv")
-
 # Import the data
-import_data(input_file, output_dir)
+import_data("~/git_repos/GenepiK/test_input/rapid_report_dummy_data.csv", "~/git_repos/GenepiK/test_output/")
 
 # Preview the data
 head(masterdata)

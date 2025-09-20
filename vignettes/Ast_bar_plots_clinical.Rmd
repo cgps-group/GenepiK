@@ -35,7 +35,7 @@ The plots are **faceted by carbapenem resistance status**, which is inferred fro
 #import GenepiK
 library(GenepiK)
 
-import_data("~/git_repos/GenepiK/data-raw/rapid_report_dummy_data.csv", "~/git_repos/")
+import_data("~/git_repos/GenepiK/test_input/rapid_report_dummy_data.csv", "~/git_repos/")
 ```
 
 ```{r eval=FALSE, echo=TRUE, message=FALSE}
