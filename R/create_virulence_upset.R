@@ -65,7 +65,7 @@ create_virulence_upset_plots <- function(data, output_dir) {
         'Frequency' = intersection_size(
           aes(fill = as.factor(`virulence_score`))
         ) +
-          scale_fill_manual(name = "Virulence score", values = c("0" = "midnightblue", "1" = "mediumblue", "2" = "dodgerblue2", "3" = "deeppink3", "4" = "maroon3", "5" = "deeppink4"))
+          scale_fill_manual(name = "Virulence score", values = c("0" = "#B2B09B", "1" = "mediumblue", "2" = "#43AA8B", "3" = "deeppink3", "4" = "maroon3", "5" = "deeppink4"))
       )
     )
 

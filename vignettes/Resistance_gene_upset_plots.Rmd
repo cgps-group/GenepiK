@@ -1,0 +1,69 @@
+---
+title: "Creating Resistance Upset Plots"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Creating Resistance Upset Plots}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+## # Introduction
+
+This vignette demonstrates how to use the `create_resistance_upset_plots()` function from the **GenepiK** package to visualize co-occurring resistance determinants in bacterial isolates. 
+
+The function generates **Upset plots**, faceted by `Isolate_type`, and colors intersections by `resistance_score`. Each plot is saved as a PNG file in a user-specified output directory.
+
+---
+
+# Loading the Package
+
+```{r setup, message=FALSE, warning=FALSE}
+library(GenepiK)
+```
+
+##load the Data
+```{r eval=FALSE, echo=TRUE, message=FALSE}
+import_data("~/git_repos/GenepiK/data-raw/rapid_report_dummy_data.csv", "~/git_repos/")
+```
+
+## The dataset must include:
+
+Isolate_type: type of bacterial isolate (e.g., CARBA-R, CARBA-S)
+
+resistance_score: numeric score indicating resistance burden
+
+#Resistance determinant columns:
+
+- **Bla_acquired**  
+- **Bla_inhR_acquired**  
+- **Bla_ESBL_acquired**  
+- **Bla_ESBL_inhR_acquired**  
+- **Bla_Carb_acquired**  
+- **Bla_chr**  
+- **SHV_mutations**  
+- **Omp_mutations**
+
+From the kleborate out
+
+
+##Generating Resistance Upset Plots
+
+The create_resistance_upset_plots() function requires:
+
+ - data: a data frame containing the columns above.
+
+ - output_dir: path to the folder where the PNG plots will be saved.
+```{r pressure, eval=FALSE, echo=TRUE, message=FALSE}
+
+# Create the plots
+create_resistance_upset_plots(masterdata, "~/git_repos/GenepiK/test_output/")
+```
+
+### Gene upset Output
+This should produce a png files with `resistance_upset_CARBA-S.png` & `resistance_upset_CARBA-R.png`  
+which looks like below in your output folder
+
+```{r echo=FALSE, fig.align='center', out.width='60%'}
+knitr::include_graphics("~/git_repos/GenepiK/test_output/resistance_upset_CARBA-S.png")
+knitr::include_graphics("~/git_repos/GenepiK/test_output/resistance_upset_CARBA-R.png")
+

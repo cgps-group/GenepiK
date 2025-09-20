@@ -1,0 +1,56 @@
+---
+title: "Carbapenem Gene Combination Summary and Plot"
+author: "GenepiK Package"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Carbapenem Gene Combination Summary and Plot}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+# Overview
+
+This vignette demonstrates how to use the function
+`count_carb_gene_combinations_plot()` from the **GenepiK** package to:
+
+- *Count unique carbapenem gene combinations in your dataset.*
+- *Calculate the percentage of isolates for each combination.*
+- *Save the summary as a CSV file.*
+- *Generate a bar plot showing the frequency of each combination.*
+
+The function treats isolates without any detected carbapenem genes (`-`) as `CARB-S`.
+
+# Loading the Package
+
+```{r setup, message=FALSE, warning=FALSE}
+library(GenepiK)
+```
+
+##load the Data
+```{r eval=FALSE, echo=TRUE, message=FALSE}
+import_data("~/git_repos/GenepiK/data-raw/rapid_report_dummy_data.csv", "~/git_repos/")
+```
+
+###Count Unique Carbapenem Gene Combinations
+```{r eval=FALSE, echo=TRUE, message=FALSE}
+count_carb_gene_combinations_plot(masterdata, "~/git_repos/GenepiK/test_output/")
+```
+
+Example output:
+```{csv}
+"Gene_Combination","Count","Percentage"
+"CARB-S",123,82
+"KPC-2",16,10.67
+"KPC-3",9,6
+"OXA-48",2,1.33
+```
+
+###Visualize as Bar Plot
+
+The function also generates a bar plot showing the number of isolates for each gene combination. The CARB-S isolates are labeled separately. 
+
+This generates a png in the output folder: `carbapenem_gene_combinations_plot.png`
+
+```{r echo=FALSE, fig.align='center', out.width='60%'}
+knitr::include_graphics("~/git_repos/GenepiK/test_output/carbapenem_gene_combinations_plot.png")
+```
+

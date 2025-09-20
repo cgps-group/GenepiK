@@ -1,0 +1,45 @@
+---
+title: "Visualizing ST Distribution with Carbapenemase Presence"
+author: "GenepiK Package"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ST Distribution Barplots}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+# Introduction
+
+This vignette demonstrates how to use the `create_ST_barplot()` function from the **GenepiK** package.  
+
+The function generates a **stacked barplot** showing the distribution of the top 20 most frequent Sequence Types (STs) and their association with the presence or absence of carbapenemase genes. Each plot is saved as a PNG file.
+
+# Loading the Package
+
+```{r setup, message=FALSE, warning=FALSE}
+library(GenepiK)
+```
+
+##load the Data
+```{r eval=FALSE, echo=TRUE, message=FALSE}
+import_data("~/git_repos/GenepiK/data-raw/rapid_report_dummy_data.csv", "~/git_repos/")
+```
+
+Required columns:
+
+- **ghru_id**
+- **ST (Sequence Type)**
+- **Bla_Carb_acquired (presence/absence of carbapenemase genes)**
+
+### plot the data
+```{r eval=FALSE, echo=TRUE, message=FALSE}
+create_ST_barplot(masterdata, "~/git_repos/GenepiK/test_output/")
+```
+
+## Including Plots
+
+This generates a PNG file: `ST_distribution.png` in your output folder
+```{r echo=FALSE, fig.align='center', out.width='60%'}
+knitr::include_graphics("~/git_repos/GenepiK/test_output/ST_distribution.png")
+```
+

@@ -1,0 +1,84 @@
+---
+title: "Importing Data with genepiK"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Importing Data with geneepiK}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, collapse = TRUE, comment = "#>")
+```
+
+## R Markdown
+Installation
+```{r install-devtools, eval=FALSE, echo=TRUE, message=FALSE}
+install.packages("devtools", repos = "https://cloud.r-project.org")
+```
+
+Then install GenepiK from the GitHub repository:
+```{r install-GenepiK, eval=FALSE, echo=TRUE, message=FALSE}
+devtools::install_git("https://github.com/cgps-group/GenepiK.git")
+```
+
+Finally, load the package:
+```{r}
+library(GenepiK)
+```
+
+# Introduction
+
+The **genepiK** package is designed for **genomic epidemiology data analysis**, 
+focusing on **epi data and genomic data from GHRU Kleb Survey**.  
+
+This vignette demonstrates **how to import your input data** into R using the function `import_data()`.
+
+---
+
+# Input File Requirements
+
+The input CSV file must include the following **mandatory columns**:
+
+<ul>
+<li><b>sample_id</b> – Unique identifier for each sample or isolate</li>
+<li><b>Isolate_type</b> – Carb-R or Carb-S</li>
+<li><b>AST</b> – AST data with one column per antibiotic with R/I/S</li>
+<li><b>Kleborate output</b> – Kleborate output columns</li>
+</ul>
+
+
+> **Tip:** Column names are case-sensitive, and spaces will be converted to underscores automatically during import.
+
+
+# Example input file
+
+Below is a minimal example of epi_gene_data.csv:
+
+```csv
+ghru_id,Sample_collection_date,Specimen_type,Isolate_type,AMK,AMP,FEP
+G2UKKS20001,02/09/24,Blood,CARBA-S,S,R,S
+G2UKKS20002,03/09/24,Blood,CARBA-S,S,R,R
+G2UKKS20003,10/09/24,Blood,CARBA-S,S,R,R
+G2UKKS20004,11/09/24,Blood,CARBA-R,S,R,R
+```
+
+## Including Plots
+Importing data
+
+```{r eval=FALSE, echo=TRUE, message=FALSE}
+# Define input and output directory
+input_dir <- "~/git_repos/GenepiK/data-raw/"
+output_dir <- "~/git_repos/GenepiK/test_output/"
+
+
+# Path to the input file
+input_file <- file.path(input_dir, "rapid_report_dummy_data.csv")
+
+# Import the data
+import_data(input_file, output_dir)
+
+# Preview the data
+head(masterdata)
+```
+

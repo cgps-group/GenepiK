@@ -1,0 +1,60 @@
+---
+title: "Creating Virulence Factor Upset Plots"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Creating Virulence Factor Upset Plots}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+# Introduction
+
+This vignette demonstrates how to use the `create_virulence_upset_plots()` function from the **GenepiK** package. 
+
+The function generates **Upset plots** for virulence factors in bacterial isolates, faceted by `Isolate_type`. Intersections are colored by `virulence_score`. Each plot is saved as a PNG file.
+
+# Loading the Package
+
+```{r setup, message=FALSE, warning=FALSE}
+library(GenepiK)
+```
+
+##load the Data
+```{r eval=FALSE, echo=TRUE, message=FALSE}
+import_data("~/git_repos/GenepiK/data-raw/rapid_report_dummy_data.csv", "~/git_repos/")
+```
+
+Required columns:
+
+Isolate_type (e.g., CARBA-R, CARBA-S)
+
+virulence_score (numeric score)
+
+Virulence factor columns:
+
+- **Yersiniabactin**  
+- **Colibactin**  
+- **Aerobactin**  
+- **Salmochelin**  
+- **RmpADC**
+
+
+##Generating Virulence Upset Plots
+
+The create_virulence_upset_plots() function requires:
+
+ - data: a data frame containing the columns above.
+
+ - output_dir: path to the folder where the PNG plots will be saved.
+ 
+```{r pressure, eval=FALSE, echo=TRUE, message=FALSE}
+# Create the plots
+create_virulence_upset_plots(masterdata, "~/git_repos/GenepiK/test_output/")
+```
+### Gene upset Output
+This should produce a png files with `virulence_upset_CARBA-S.png` & `virulence_upset_CARBA-R.png`  
+which looks like below in your output folder
+
+```{r echo=FALSE, fig.align='center', out.width='60%'}
+knitr::include_graphics("~/git_repos/GenepiK/test_output/virulence_upset_CARBA-S.png")
+knitr::include_graphics("~/git_repos/GenepiK/test_output/virulence_upset_CARBA-R.png")
