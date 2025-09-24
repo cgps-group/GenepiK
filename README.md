@@ -38,7 +38,7 @@ install.packages("remotes") # if you haven't already
 remotes::install_version("ggplot2", version = "3.5.2")
 
 #install the GenepiK package
-remotes::install_github("CGPS/GenepiK")
+remotes::install_github("cgps-group/GenepiK")
 ```
 
 All required packages will be installed automatically.
