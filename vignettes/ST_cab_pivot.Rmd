@@ -1,0 +1,61 @@
+---
+title: "Pivot Table: ST vs Carbapenem Genes"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Pivot Table: ST vs Carbapenem Genes}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, collapse = TRUE, comment = "#>")
+```
+# Introduction  
+The `create_ST_carb_gene_pivot` function generates a pivot table to visualize the distribution of **carbapenemase genes** across different **sequence types (STs)**.  
+The table includes **totals by ST** (rows) and **totals by gene** (columns), giving both detailed and overall summaries.
+
+
+### Steps performed by the function
+
+1. The function reshapes the data using `pivot_wider()`, so that each unique `bla_Carb_acquired` gene becomes a column and the rows correspond to STs.  
+2. Missing values are replaced with zeros to ensure clean counts.  
+3. It calculates row sums for each ST, giving the total count of carbapenemase genes across all columns.  
+4. It calculates column sums for each gene, giving the total across all STs.  
+5. The column totals are appended as the last row named **Total**.  
+6. The row totals are appended as the last column named **Total**.  
+7. Finally, the function returns the completed pivot table with STs as rows and carbapenemase genes as columns.
+
+### Usage
+```{r eval=FALSE, echo=TRUE, message=FALSE}
+#import GenepiK
+library(GenepiK)
+
+import_data("~/git_repos/GenepiK/test_input/rapid_report_dummy_data.csv", "~/git_repos/")
+```
+
+```{r eval=FALSE, echo=TRUE, message=FALSE}
+#create plot
+create_ST_carb_gene_pivot(masterdata, "~/git_repos/GenepiK/test_output/")
+```
+
+# Output  
+The function returns a pivot table where:  
+- **Rows** represent the sequence types (STs).  
+- **Columns** represent the carbapenemase genes listed in `bla_Carb_acquired`.  
+- **Cells** show the count of isolates carrying each gene within an ST.  
+
+It is saved as a csv file in your output folder
+
+Example output:
+```{csv}
+"ST","-","KPC-2","KPC-3","OXA-48","Total"
+"ST101",5,2,0,0,7
+"ST1012",1,0,0,0,1
+"ST11",1,0,0,0,1
+"ST1106",2,0,0,0,2
+"ST111",3,0,0,0,3
+"ST115-2LV",1,0,0,0,1
+"ST1294-3LV",1,0,0,0,1
+"Total",123,16,9,2,150
+```
+
