@@ -1,0 +1,49 @@
+---
+title: "Combine upset plots"
+output: rmarkdown::html_vignette
+date: "`r Sys.Date()`"
+vignette: >
+  %\VignetteIndexEntry{Combine Upset plots}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## # Introduction
+
+The `combine_upset_plots()` function generates combines all the upset plots into one figure. 
+The plots are **faceted by isolate type**, which is inferred from the column `Isolate_type`. This is designation should have been provided by the sentinel sites.
+
+### Steps Performed by the Function
+
+1. **Import the png files to be combined** from the input directory.
+
+2. **Save the plot** as a **PNG file** in the specified output directory.
+
+### Usage
+```{r eval=FALSE, echo=TRUE, message=FALSE}
+#import GenepiK
+library(GenepiK)
+
+#create a file name plot_files (make sure the png files are saved in plot_dir)
+plot_files <- c(
+"virulence_upset_CARBA-S.png",
+"virulence_upset_CARBA-R.png",
+"resistance_upset_CARBA-S.png",
+"resistance_upset_CARBA-R.png")
+```
+
+```{r eval=FALSE, echo=TRUE, message=FALSE}
+#create plot
+combine_upset_plots("~/git_repos/GenepiK/test_output/", "~/git_repos/GenepiK/test_output/", plot_files, "combined_upset_plots.png")
+```
+
+### Output
+This should produce a png file with four upset plots in your output folder.
+
+```{r echo=FALSE, fig.align='center', out.width='60%'}
+knitr::include_graphics("~/git_repos/GenepiK/test_output/combined_upset_plots.png")
+```
