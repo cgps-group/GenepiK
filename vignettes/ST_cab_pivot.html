@@ -48,9 +48,8 @@ overflow: visible;
 }
 </style>
 <style type="text/css" data-origin="pandoc">
-html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -61,7 +60,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
 { counter-reset: source-line 0; }
@@ -347,9 +346,10 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 table to visualize the distribution of <strong>carbapenemase
 genes</strong> across different <strong>sequence types
 (STs)</strong>.<br />
-The table includes <strong>totals by ST</strong> (rows) and
-<strong>totals by gene</strong> (columns), giving both detailed and
-overall summaries.</p>
+The table includes <strong>total number of strains per ST</strong>
+(rows) and <strong>total number of times a carbapenemase gene was
+detected</strong> (columns), giving both detailed and overall
+summaries.</p>
 <div id="steps-performed-by-the-function" class="section level3">
 <h3>Steps performed by the function</h3>
 <ol style="list-style-type: decimal">
@@ -391,9 +391,9 @@ rows and carbapenemase genes as columns.</li>
 - <strong>Rows</strong> represent the sequence types (STs).<br />
 - <strong>Columns</strong> represent the carbapenemase genes listed in
 <code>bla_Carb_acquired</code>.<br />
-- <strong>Cells</strong> show the count of isolates carrying each gene
+- <strong>Cells</strong> show the number of isolates carrying each gene
 within an ST.</p>
-<p>It is saved as a csv file in your output folder</p>
+<p>It is saved as a csv file in your output folder.</p>
 <p>Example output:</p>
 <pre class="csv"><code>&quot;ST&quot;,&quot;-&quot;,&quot;KPC-2&quot;,&quot;KPC-3&quot;,&quot;OXA-48&quot;,&quot;Total&quot;
 &quot;ST101&quot;,5,2,0,0,7
