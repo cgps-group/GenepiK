@@ -1,9 +1,9 @@
 ---
-title: "Visualizing AST by Carbapenem Resistance from Clinical Data"
+title: "Visualizing AST by Isolate Type"
 output: rmarkdown::html_vignette
 date: "`r Sys.Date()`"
 vignette: >
-  %\VignetteIndexEntry{Visualizing AST by Carbapenem Resistance Genes}
+  %\VignetteIndexEntry{Visualizing AST by Isolate Type}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,15 +14,15 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## # Introduction
 
-The `create_ast_barplots_gene()` function generates barplots to visualize **antimicrobial susceptibility test (AST)** patterns for a set of drugs. 
-The plots are **faceted by carbapenem resistance status**, which is inferred from the column `Isolate_type` based on the phenotypic data whether the isolates was submitted as carbapenem resistant or senetive.
+The `create_ast_barplots()` function generates two barplots to visualize **antimicrobial susceptibility test (AST)** patterns for a set of drugs. 
+The plots are **faceted by isolate type**, which is inferred from the column `Isolate_type`. This is designation should have been provided by the sentinel sites.
 
 ### Steps Performed by the Function
 
 1. **Subset relevant AST columns** from the input dataset.
 
 2. **Detect the carbapenem resistance indicator** from `Isolate_type` column:
-   - **CARBA-R** or **CARBA-S** from column `Ioslate_type`
+   - **CARBA-R** or **CARBA-S** from column `Isolate_type`
 
 3. **Generate a stacked bar plot** showing the proportion of **S, I, R** for each antimicrobial.
 
@@ -44,7 +44,7 @@ create_ast_barplot(masterdata, "~/git_repos/GenepiK/test_output/")
 ```
 
 ### AST Barplot Output
-This should produce a png file like below in your output folder
+This should produce a png file with two barplots in your output folder.
 
 ```{r echo=FALSE, fig.align='center', out.width='60%'}
 knitr::include_graphics("~/git_repos/GenepiK/test_output/ast_barplots_clinical_facet.png")
