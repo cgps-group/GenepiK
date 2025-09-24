@@ -26,7 +26,7 @@ count_carb_gene_combinations_plot <- function(masterdata, output_dir) {
 
   # Replace missing/empty with "CARB-S"
   gene_col <- as.character(masterdata$Bla_Carb_acquired)
-  gene_col[is.na(gene_col) | gene_col == "" | gene_col == "-"] <- "CARB-S"
+  gene_col[is.na(gene_col) | gene_col == "" | gene_col == "-"] <- "No carbapenemase"
 
   # Count unique combinations
   combo_counts <- as.data.frame(table(gene_col))
@@ -49,8 +49,10 @@ count_carb_gene_combinations_plot <- function(masterdata, output_dir) {
 print(
   ggplot(combo_counts, aes(x = reorder(Gene_Combination, -Count), y = Count, fill = Gene_Combination)) +
     geom_bar(stat = "identity") +
-    labs(x = "Carbapenem Gene Combinations", y = "Number of Isolates", fill = "Gene Combination") +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+    labs(x = "", y = "Number of Isolates", fill = "Gene Combination") +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+    theme(legend.position="none")
+  
 )
   dev.off()
   message("✅ Carbapenem gene combination plot saved to: ", output_png)
