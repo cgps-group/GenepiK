@@ -33,10 +33,19 @@ Install the latest version of this package with:
 
 ```r
 install.packages("remotes") # if you haven't already
+
+#install specific version of ggplot2 needed
+remotes::install_version("ggplot2", version = "3.5.2")
+
+#install the GenepiK package
 remotes::install_github("CGPS/GenepiK")
 ```
 
 All required packages will be installed automatically.
+
+Do not update any of the packages if it asks. Selection option 3 to skip the updates.
+![alt text](https://github.com/cgps-group/GenepiK/blob/main/img/update.png?raw=true)
+
 
 It might be best to restart R before running the installation to prevent issues with running the examples below.
 
